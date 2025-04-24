@@ -33,11 +33,11 @@ The application follows a layered architecture:
 
 | Method | URL | Description |
 |--------|-----|-------------|
-| POST | `/products` | Create a new product |
-| GET | `/products` | List all products (paginated) |
-| GET | `/products/{id}` | Get a product by ID |
-| PUT | `/products/{id}` | Update a product |
-| DELETE | `/products/{id}` | Delete a product |
+| POST | `/productapi/products` | Create a new product |
+| GET | `/productapi/products` | List all products (paginated) |
+| GET | `/productapi/products/{id}` | Get a product by ID |
+| PUT | `/productapi/products/{id}` | Update a product |
+| DELETE | `/productapi/products/{id}` | Delete a product |
 
 ## Running the Application
 
@@ -109,21 +109,21 @@ You can use the following curl commands to test the API:
 
 ```bash
 # Create a product
-curl -X POST http://localhost:8080/products \
+curl -X POST http://localhost:8080/productapi/products \
   -H "Content-Type: application/json" \
   -d '{"name":"Test Product","description":"Test Description","price":10.99}'
 
 # Get all products
-curl http://localhost:8080/products
+curl http://localhost:8080/productapi/products
 
 # Get a specific product
-curl http://localhost:8080/products/1
+curl http://localhost:8080/productapi/products/1
 
 # Update a product
-curl -X PUT http://localhost:8080/products/1 \
+curl -X PUT http://localhost:8080/productapi/products/1 \
   -H "Content-Type: application/json" \
   -d '{"name":"Updated Product","description":"Updated Description","price":15.99}'
 
 # Delete a product
-curl -X DELETE http://localhost:8080/products/1
+curl -X DELETE http://localhost:8080/productapi/products/1
 ```
