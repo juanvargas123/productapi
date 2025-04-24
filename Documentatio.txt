@@ -1,0 +1,71 @@
+Prueba Técnica: Java + Spring Boot  
+Objetivo 
+Desarrollar una API REST en **Spring Boot** para la gestión de productos, empaquetarla en un contenedor Docker, 
+versionar el código en un repositorio Git y documentar el proceso. 
+1. Desarrollo de API REST con Spring Boot 
+Se debe construir una API REST para la gestión de productos con las siguientes características: 
+1.1. Modelo de Datos 
+Entidad **Product** con los siguientes atributos: 
+●  `id` (Long, autogenerado) 
+●  `name` (String, obligatorio, mínimo 3 caracteres) 
+●  `description` (String, opcional) 
+●  `price` (Decimal, obligatorio, mayor a 0) 
+●  `createdAt` (Fecha de creación, autogenerada) 
+1.2. Endpoints Requeridos 
+Método | URL | Descripción 
+--------|-----|------------ 
+**POST** | `/products` | Crear un nuevo producto 
+**GET** | `/products` | Listar todos los productos 
+**GET** | `/products/{id}` | Obtener un producto por ID 
+**PUT** | `/products/{id}` | Actualizar un producto existente 
+**DELETE** | `/products/{id}` | Eliminar un producto por ID  
+- Validar los datos de entrada con **Spring Validation**. 
+- Manejar excepciones y devolver respuestas HTTP adecuadas. 
+- Implementar un mecanismo de paginación en el listado de productos. 
+- Utilizar **Spring Data JPA** con una base de datos en memoria ( **PostgreSQL** con Docker). 
+2. Dockerización de la Aplicación 
+Crear un **Dockerfile** para empaquetar la aplicación en un contenedor. 
+Configurar un **docker-compose.yml** para levantar la aplicación junto con la base de datos (PostgreSQL). 
+La API debe ser accesible en `http://localhost:8080` después de ejecutar `docker-compose up`. 
+3. Manejo de Git y Control de Versiones 
+El candidato debe: 
+1. **Subir el código a un repositorio Git público o privado** (GitHub, GitLab, Bitbucket, etc.). 
+2. Seguir buenas prácticas de Git, incluyendo: 
+   - **Uso de commits descriptivos** siguiendo convenciones como [Conventional 
+Commits](https://www.conventionalcommits.org/). 
+   - **Uso de ramas** (por ejemplo, `main`, `feature/api`, `feature/docker`). 
+   - **Uso de .gitignore** para excluir archivos innecesarios. 
+3. Crear al menos un **Pull Request (PR)** ficticio o real para demostrar el flujo de trabajo en Git. 
+4. Documentación y Sustentación 
+El candidato debe entregar: 
+1. **Código fuente en Git** con un historial de commits bien estructurado. 
+2. **Postman Collection** o similar para probar los endpoints. 
+3. **Explicación breve en un README.md** sobre: 
+   - Arquitectura del proyecto. 
+   - Decisiones técnicas tomadas. 
+   - Explicación del Dockerfile y docker-compose. 
+   - Breve descripción del flujo de Git utilizado. 
+Criterios de Evaluación 
+Criterio | Peso (%) 
+Funcionalidad de la API (CRUD y validaciones) | 15% 
+Uso correcto de Spring Boot y JPA | 15% 
+Dockerización y uso de docker-compose | 15% 
+Manejo de Git (commits, branches, PRs) | 15% 
+Calidad del código y buenas prácticas | 15% 
+Documentación y claridad en la sustentación | 25% 
+Sustentación 
+Una vez entregado el código, se hará una sesión de **30 minutos** donde el candidato deberá: 
+- Explicar su solución. 
+- Justificar decisiones técnicas. 
+- Mostrar cómo ejecuta su aplicación en Docker. 
+- Explicar su flujo de Git y cómo manejaría una integración en equipo. 
+- Responder preguntas sobre optimización y mejoras. 
+Extras (Opcionales, Puntos Adicionales) 
+Opcionalmente, se pueden obtener puntos adicionales por: 
+ 
+- Implementar pruebas unitarias y de integración con **JUnit y Mockito**. 
+- Usar **Lombok** para reducir código boilerplate. 
+- Implementar **caching** con Redis. 
+- Utilizar un sistema de logs estructurados con **SLF4J**. 
+- Configurar una **pipeline CI/CD** en GitHub Actions, GitLab CI/CD o Jenkins. 
+- Implementar algún caso de uso con kafka
