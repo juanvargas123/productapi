@@ -106,7 +106,7 @@ class ProductApiIntegrationTest {
                 .andExpect(jsonPath("$.content", hasSize(greaterThanOrEqualTo(1))))
                 .andExpect(jsonPath("$.content[0].id", is(testProduct.getId().intValue())))
                 .andExpect(jsonPath("$.content[0].name", is("Integration Test Product")))
-                .andExpect(jsonPath("$.totalElements", greaterThanOrEqualTo(1L)));
+                .andExpect(jsonPath("$.totalElements", greaterThanOrEqualTo(1)));
     }
 
     @Test
