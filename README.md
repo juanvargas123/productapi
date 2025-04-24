@@ -15,8 +15,9 @@ A RESTful API for managing products built with Spring Boot and PostgreSQL.
 - Java 17
 - Spring Boot 3.2.3
 - Spring Data JPA
-- PostgreSQL
-- Docker
+- PostgreSQL (production)
+- H2 Database (development/testing)
+- Docker & Docker Compose
 - Lombok
 
 ## Architecture
@@ -40,33 +41,58 @@ The application follows a layered architecture:
 
 ## Running the Application
 
-### Using Docker Compose
+### Development Environment (In-Memory Database)
+
+1. Clone the repository
+2. Make sure you have Java 17 and Maven installed
+3. Run the application with the dev profile (H2 in-memory database):
+   ```bash
+   mvn spring-boot:run -Dspring.profiles.active=dev
+   ```
+4. The API will be available at `http://localhost:8080/productapi`
+5. Access the H2 console at `http://localhost:8080/productapi/h2-console` to view the database:
+   - JDBC URL: `jdbc:h2:mem:productdb`
+   - Username: `sa`
+   - Password: (leave empty)
+
+### Production Environment (PostgreSQL with Docker)
 
 1. Make sure you have Docker and Docker Compose installed
 2. Run the following command:
    ```bash
    docker-compose up
    ```
-3. The API will be available at `http://localhost:8080`
+3. The API will be available at `http://localhost:8080/productapi`
+4. This setup uses PostgreSQL for persistent data storage
 
-### Development Setup
+## Database Configurations
 
-1. Clone the repository
-2. Make sure you have Java 17 and Maven installed
-3. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
+The application supports two database configurations:
+
+### H2 In-Memory Database (Development)
+- Used in the dev profile
+- Configured in `application-dev.properties`
+- Data is lost when the application restarts
+- Includes H2 Console for easy database inspection
+- No Docker required for development
+- Suitable for rapid development and testing
+
+### PostgreSQL (Production)
+- Used in the production environment
+- Configured in `application-prod.properties`
+- Deployed with Docker Compose
+- Persistent storage with Docker volumes
+- Suitable for production use
 
 ## Docker Configuration
 
-The application uses a multi-stage Docker build:
+The application uses a multi-stage Docker build for production:
 - First stage: Builds the application using Maven
 - Second stage: Creates a lightweight runtime image
 
 The `docker-compose.yml` file sets up:
-- The application service
-- PostgreSQL database
+- The application service with PostgreSQL
+- PostgreSQL database container
 - Persistent volume for database data
 
 ## Git Workflow
@@ -100,4 +126,4 @@ curl -X PUT http://localhost:8080/products/1 \
 
 # Delete a product
 curl -X DELETE http://localhost:8080/products/1
-``` 
+```
